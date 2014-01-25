@@ -479,10 +479,10 @@ def put(path, ical_request, collection):
         collection.append(name, ical_request)
 
 
-def report(path, xml_request, collection):
+def report(path, xml_request, collections):
     """Read and answer REPORT requests.
 
-    Read rfc3253-3.6 for info.
+    Read rfc3253-3.6 and rfc4791-7.1 for info.
 
     """
     # Reading request

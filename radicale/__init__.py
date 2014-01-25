@@ -565,14 +565,15 @@ class Application(object):
     def report(self, environ, read_collections, write_collections, content,
                user):
         """Manage REPORT request."""
-        if not len(read_collections):
-            return NOT_ALLOWED
 
-        collection = read_collections[0]
+        collections = set(read_collections + write_collections)
+
+        if not len(collections):
+            return NOT_ALLOWED
 
         headers = {"Content-Type": "text/xml"}
 
-        answer = xmlutils.report(environ["PATH_INFO"], content, collection)
+        answer = xmlutils.report(environ["PATH_INFO"], content, collections)
         return client.MULTI_STATUS, headers, answer
 
     # pylint: enable=W0612,W0613,R0201
